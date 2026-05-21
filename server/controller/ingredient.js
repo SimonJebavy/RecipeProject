@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const ListAbl = require('../abl/ingredient/listAbl');
-const CreateAbl = require('../abl/ingredient/createAbl');
-const DeleteAbl = require('../abl/ingredient/deleteAbl');
+const ListAbl = require("../abl/ingredient/listIngredientAbl");
+const CreateAbl = require("../abl/ingredient/createIngredientAbl");
+const DeleteAbl = require("../abl/ingredient/deleteIngredientAbl");
 
-router.get('/list', ListAbl);
-router.post('/create', CreateAbl);
-router.post('/delete', DeleteAbl);
+router.get("/list", ListAbl);
+router.post("/create", CreateAbl);
+router.post("/delete", DeleteAbl);
 
 module.exports = router;
