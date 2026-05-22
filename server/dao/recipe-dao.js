@@ -83,7 +83,7 @@ function list() {
     }
 }
 
-//zobrazení receptů dle ingrdiencí, které obsahuje/neobsahuje
+//Method to list recipes by igredients that are included or excluded
 function listByIngredientId(
     includeIngredientIds = [],
     excludeIngredientIds = [],
@@ -93,12 +93,12 @@ function listByIngredientId(
     return recipeList.filter((recipe) => {
         const recipeIngredientIds = recipe.ingredientIds || [];
 
-        // recept musí obsahovat všechny požadované ingredience
+        // recipe must include all required ingredients
         const containsAllIncluded = includeIngredientIds.every((ingredientId) =>
             recipeIngredientIds.includes(ingredientId),
         );
 
-        // recept nesmí obsahovat žádnou zakázanou ingredienci
+        // recipe must not include all excluded ingredients
         const containsExcluded = excludeIngredientIds.some((ingredientId) =>
             recipeIngredientIds.includes(ingredientId),
         );
@@ -109,7 +109,7 @@ function listByIngredientId(
 
 module.exports = {
     get,
-    create,    
+    create,
     remove,
     list,
     listByIngredientId,
