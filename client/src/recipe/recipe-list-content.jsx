@@ -10,15 +10,15 @@ import Table from "react-bootstrap/Table";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 
-import { TransactionListContext } from "./transaction-list-provider";
+import { RecipeListContext } from "./recipe-list-provider";
 import PendingItem from "./pending-item";
-import TransactionItemForm from "./transaction-item-form";
-import TransactionItemDeleteDialog from "./transaction-item-delete-dialog";
-import TransactionItem from "./transaction-item";
+import RecipeItemForm from "./recipe-item-form";
+import RecipeItemDeleteDialog from "./recipe-item-delete-dialog";
+import RecipeItem from "./recipe-item";
 
 const emptyRecipeList = [];
 
-function RecipeDetailDialog({ item, onClose, setTransactionItemDeleteDialog }) {
+function RecipeDetailDialog({ item, onClose, setRecipeItemDeleteDialog }) {
   return (
     <Modal show={true} onHide={onClose} size="lg" centered>
       <Modal.Header closeButton>
@@ -40,7 +40,7 @@ function RecipeDetailDialog({ item, onClose, setTransactionItemDeleteDialog }) {
           variant="outline-danger"
           onClick={() => {
             onClose();
-            setTransactionItemDeleteDialog(item);
+            setRecipeItemDeleteDialog(item);
           }}
         >
           Delete recipe
@@ -53,9 +53,9 @@ function RecipeDetailDialog({ item, onClose, setTransactionItemDeleteDialog }) {
   );
 }
 
-function DashboardContent() {
-  const [transactionItemFormData, setTransactionItemFormData] = useState();
-  const [transactionItemDeleteDialog, setTransactionItemDeleteDialog] =
+function RecipeListContent() {
+  const [recipeItemFormData, setRecipeItemFormData] = useState();
+  const [recipeItemDeleteDialog, setRecipeItemDeleteDialog] =
     useState();
   const [recipeDetailDialog, setRecipeDetailDialog] = useState();
   const [requiredIngredientIds, setRequiredIngredientIds] = useState([
@@ -68,7 +68,7 @@ function DashboardContent() {
     "",
     "",
   ]);
-  const { state, data } = useContext(TransactionListContext);
+  const { state, data } = useContext(RecipeListContext);
   const recipeList = data?.itemList || emptyRecipeList;
   const filteredRecipeList = useMemo(() => {
     const requiredFilters = requiredIngredientIds.filter(Boolean);
@@ -109,22 +109,22 @@ function DashboardContent() {
 
   return (
     <Card className="border-0">
-      {!!transactionItemFormData ? (
-        <TransactionItemForm
-          onClose={() => setTransactionItemFormData()}
+      {!!recipeItemFormData ? (
+        <RecipeItemForm
+          onClose={() => setRecipeItemFormData()}
         />
       ) : null}
-      {!!transactionItemDeleteDialog ? (
-        <TransactionItemDeleteDialog
-          item={transactionItemDeleteDialog}
-          onClose={() => setTransactionItemDeleteDialog()}
+      {!!recipeItemDeleteDialog ? (
+        <RecipeItemDeleteDialog
+          item={recipeItemDeleteDialog}
+          onClose={() => setRecipeItemDeleteDialog()}
         />
       ) : null}
       {!!recipeDetailDialog ? (
         <RecipeDetailDialog
           item={recipeDetailDialog}
           onClose={() => setRecipeDetailDialog()}
-          setTransactionItemDeleteDialog={setTransactionItemDeleteDialog}
+          setRecipeItemDeleteDialog={setRecipeItemDeleteDialog}
         />
       ) : null}
       <Card.Header
@@ -140,7 +140,7 @@ function DashboardContent() {
             variant="success"
             size="sm"
             disabled={state === "pending"}
-            onClick={() => setTransactionItemFormData({})}
+            onClick={() => setRecipeItemFormData({})}
           >
             <Icon path={mdiPlus} size={0.8} /> Add recipe
           </Button>
@@ -211,7 +211,7 @@ function DashboardContent() {
               <tbody>
               {filteredRecipeList.length > 0 ? (
                 filteredRecipeList.map((item) => (
-                  <TransactionItem
+                  <RecipeItem
                     key={item.id}
                     item={item}
                     setRecipeDetailDialog={setRecipeDetailDialog}
@@ -234,4 +234,4 @@ function DashboardContent() {
   );
 }
 
-export default DashboardContent;
+export default RecipeListContent;

@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import { CategoryContext } from "./category-provider";
-import Category from "./category";
+import { IngredientContext } from "./ingredient-provider";
+import Ingredient from "./ingredient";
 import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Icon from "@mdi/react";
 import { mdiRefresh } from "@mdi/js";
 
-function CategoryList() {
-  const { data, state, error, handlerMap } = useContext(CategoryContext);
+function IngredientList() {
+  const { data, state, error, handlerMap } = useContext(IngredientContext);
 
   return (
     <div>
@@ -30,14 +30,14 @@ function CategoryList() {
         </Stack>
       </h1>
       <div>
-        <Category />
+        <Ingredient />
       </div>
       {(state === "errorCreating" || state === "errorDeleting") && error ? (
         <Alert variant="danger">{error}</Alert>
       ) : null}
       {data.itemList.length > 0 ? (
         data.itemList.map((ingredient) => (
-          <Category key={ingredient.id} data={ingredient} />
+          <Ingredient key={ingredient.id} data={ingredient} />
         ))
       ) : (
         <div>No ingredients have been created yet.</div>
@@ -46,4 +46,4 @@ function CategoryList() {
   );
 }
 
-export default CategoryList;
+export default IngredientList;

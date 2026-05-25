@@ -2,17 +2,17 @@ import { createContext, useState, useEffect } from "react";
 
 import FetchHelper from "../fetch-helper.js";
 
-export const TransactionListContext = createContext();
+export const RecipeListContext = createContext();
 
-function TransactionListProvider({ children }) {
-  const [transactionListDto, setTransactionListDto] = useState({
+function RecipeListProvider({ children }) {
+  const [recipeListDto, setRecipeListDto] = useState({
     state: "ready",
     data: null,
     error: null,
   });
 
   async function handleLoad() {
-    setTransactionListDto((current) => {
+    setRecipeListDto((current) => {
       return { ...current, data: undefined, state: "pending" };
     });
 
@@ -21,7 +21,7 @@ function TransactionListProvider({ children }) {
       FetchHelper.ingredient.list(),
     ]);
 
-    setTransactionListDto((current) => {
+    setRecipeListDto((current) => {
       if (recipeResult.ok && ingredientResult.ok) {
         return {
           ...current,
@@ -49,11 +49,11 @@ function TransactionListProvider({ children }) {
   /* eslint-enable */
 
   async function handleCreate(dtoIn) {
-    setTransactionListDto((current) => {
+    setRecipeListDto((current) => {
       return { ...current, state: "pending" };
     });
     const result = await FetchHelper.recipe.create(dtoIn);
-    setTransactionListDto((current) => {
+    setRecipeListDto((current) => {
       if (result.ok) {
         current.data.itemList.push(result.data);
         return {
@@ -70,11 +70,11 @@ function TransactionListProvider({ children }) {
   }
 
   async function handleDelete(dtoIn) {
-    setTransactionListDto((current) => {
+    setRecipeListDto((current) => {
       return { ...current, state: "pending", pendingId: dtoIn.id };
     });
     const result = await FetchHelper.recipe.delete(dtoIn);
-    setTransactionListDto((current) => {
+    setRecipeListDto((current) => {
       if (result.ok) {
         const itemIndex = current.data.itemList.findIndex(
           (item) => item.id === dtoIn.id
@@ -94,15 +94,15 @@ function TransactionListProvider({ children }) {
   }
 
   const value = {
-    ...transactionListDto,
+    ...recipeListDto,
     handlerMap: { handleLoad, handleCreate, handleDelete },
   };
 
   return (
-    <TransactionListContext.Provider value={value}>
+    <RecipeListContext.Provider value={value}>
       {children}
-    </TransactionListContext.Provider>
+    </RecipeListContext.Provider>
   );
 }
 
-export default TransactionListProvider;
+export default RecipeListProvider;

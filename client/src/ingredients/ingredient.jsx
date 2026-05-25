@@ -1,4 +1,4 @@
-import { CategoryContext } from "./category-provider";
+import { IngredientContext } from "./ingredient-provider";
 import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,8 +6,8 @@ import Icon from "@mdi/react";
 import { mdiPlus, mdiLoading, mdiDeleteOutline } from "@mdi/js";
 import DeleteConfirmationDialog from "./delete-confirmation-dialog";
 
-function Category({ data }) {
-  const { state, handlerMap } = useContext(CategoryContext);
+function Ingredient({ data }) {
+  const { state, handlerMap } = useContext(IngredientContext);
   const [name, setName] = useState("");
   const [showDeleteConfirmationDialog, setShowDeleteConfirmationDialog] =
     useState(false);
@@ -81,4 +81,4 @@ function Category({ data }) {
   );
 }
 
-export default Category;
+export default Ingredient;

@@ -4,11 +4,11 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
-import { TransactionListContext } from "./transaction-list-provider.jsx";
+import { RecipeListContext } from "./recipe-list-provider.jsx";
 
-function TransactionItemDeleteDialog({ item, onClose }) {
+function RecipeItemDeleteDialog({ item, onClose }) {
   const [errorState, setErrorState] = useState();
-  const { state, handlerMap } = useContext(TransactionListContext);
+  const { state, handlerMap } = useContext(RecipeListContext);
 
   return (
     <Modal show={true} onHide={onClose}>
@@ -48,4 +48,4 @@ function TransactionItemDeleteDialog({ item, onClose }) {
   );
 }
 
-export default TransactionItemDeleteDialog;
+export default RecipeItemDeleteDialog;

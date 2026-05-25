@@ -5,10 +5,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 
-import { TransactionListContext } from "./transaction-list-provider.jsx";
+import { RecipeListContext } from "./recipe-list-provider.jsx";
 
-function TransactionItemForm({ onClose }) {
-  const { state, data, error, handlerMap } = useContext(TransactionListContext);
+function RecipeItemForm({ onClose }) {
+  const { state, data, error, handlerMap } = useContext(RecipeListContext);
 
   return (
     <Modal show={true} onHide={onClose}>
@@ -92,4 +92,4 @@ function TransactionItemForm({ onClose }) {
   );
 }
 
-export default TransactionItemForm;
+export default RecipeItemForm;

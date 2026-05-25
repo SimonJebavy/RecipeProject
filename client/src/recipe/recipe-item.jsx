@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 
-function TransactionItem({ item, setRecipeDetailDialog }) {
+function RecipeItem({ item, setRecipeDetailDialog }) {
   return (
     <tr>
       <td>{item.title}</td>
@@ -17,4 +17,4 @@ function TransactionItem({ item, setRecipeDetailDialog }) {
   );
 }
 
-export default TransactionItem;
+export default RecipeItem;

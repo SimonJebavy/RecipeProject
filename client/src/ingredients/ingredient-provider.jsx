@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 
-export const CategoryContext = createContext();
+export const IngredientContext = createContext();
 
 const readErrorMessage = async (response) => {
   try {
@@ -15,7 +15,7 @@ const readErrorMessage = async (response) => {
   }
 };
 
-const CategoryProvider = ({ children }) => {
+const IngredientProvider = ({ children }) => {
   const [data, setData] = useState();
   const [error, setError] = useState();
   const [state, setState] = useState();
@@ -60,9 +60,9 @@ const CategoryProvider = ({ children }) => {
     });
 
     if (response.ok) {
-      const newCategory = await response.json();
+      const newIngredient = await response.json();
       setData((currentData) => {
-        currentData.itemList.push(newCategory);
+        currentData.itemList.push(newIngredient);
         return { ...currentData };
       });
       setError(undefined);
@@ -101,7 +101,7 @@ const CategoryProvider = ({ children }) => {
   };
 
   return (
-    <CategoryContext.Provider
+    <IngredientContext.Provider
       value={{
         data,
         state,
@@ -114,8 +114,8 @@ const CategoryProvider = ({ children }) => {
       }}
     >
       {children}
-    </CategoryContext.Provider>
+    </IngredientContext.Provider>
   );
 };
 
-export default CategoryProvider;
+export default IngredientProvider;

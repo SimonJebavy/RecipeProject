@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import { CategoryContext } from "./category-provider";
+import { IngredientContext } from "./ingredient-provider";
 import Loading from "../common/loading";
 import Error from "../common/error";
-import CategoryList from "./category-list";
+import IngredientList from "./ingredient-list";
 
-const CategoryStateResolver = () => {
-  const { data, state, error } = useContext(CategoryContext);
+const IngredientStateResolver = () => {
+  const { data, state, error } = useContext(IngredientContext);
 
   if (data) {
-    return <CategoryList />;
+    return <IngredientList />;
   }
 
   if (state === "loading" && !data) {
@@ -40,4 +40,4 @@ const CategoryStateResolver = () => {
   }
 };
 
-export default CategoryStateResolver;
+export default IngredientStateResolver;
