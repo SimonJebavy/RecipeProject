@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-import recipeIcon from "./money-with-wings-svgrepo-com.svg";
+import recipeIcon from "./cook-book.png";
 
 function Navigation() {
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ function Navigation() {
           <img
             src={recipeIcon}
             alt="Recipe Book"
-            height={20}
-            style={{ marginRight: 6 }}
+            height={50}
+            style={{ marginRight: 16 }}
           />
           Recipe Book
         </Navbar.Brand>
