@@ -11,9 +11,9 @@ function Navigation() {
   return (
     <Navbar
       expand="md"
-      bg="primary"
       data-bs-theme="dark"
       collapseOnSelect={true}
+      style={{backgroundColor: "#e7aa1a" }}
     >
       <Container>
         <Navbar.Brand onClick={() => navigate("")}>
