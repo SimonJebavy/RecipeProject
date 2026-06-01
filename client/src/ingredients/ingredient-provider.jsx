@@ -27,7 +27,7 @@ const IngredientProvider = ({ children }) => {
     );
   };
 
-  const fetchCategories = useCallback(async () => {
+  const fetchIngredients = useCallback(async () => {
     setState("loading");
     const response = await fetch("/ingredient/list");
     if (response.ok) {
@@ -42,8 +42,8 @@ const IngredientProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
+    fetchIngredients();
+  }, [fetchIngredients]);
 
   const handleCreate = async (name) => {
     if (ingredientExists(name)) {
@@ -109,7 +109,7 @@ const IngredientProvider = ({ children }) => {
         handlerMap: {
           handleCreate,
           handleDelete,
-          fetchCategories,
+          fetchIngredients,
         },
       }}
     >
