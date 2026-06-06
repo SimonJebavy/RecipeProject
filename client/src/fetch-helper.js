@@ -24,9 +24,6 @@ const baseUri = "http://localhost:3000";
 
 const FetchHelper = {
     recipe: {
-        get: async (dtoIn) => {
-            return await Call(baseUri, "recipe/get", dtoIn, "get");
-        },
         create: async (dtoIn) => {
             return await Call(baseUri, "recipe/create", dtoIn, "post");
         },
